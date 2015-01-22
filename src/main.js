@@ -1,11 +1,31 @@
-var http = require("http"),
-    server;
+var express = require("express");
+var bodyParser = require("body-parser");
+var web = express();
 
-server = http.createServer(function (req, res) {
-    res.writeHead(200, {"Content-Type": "text/plain"});
-    res.end("Hello World!\n");
+web.use(bodyParser.urlencoded({ extended: true }))
+web.use(express.static('stylesheet'));
+
+var server;
+var port = 3000;
+
+//Need to do real DB
+var DB = {
+  user: "test",
+  password: "test"
+};
+
+server = web.listen(port, function (){
+  console.log("server running on port" + ' ' + port)
 });
 
-server.listen(3000);
+web.get('/', function (req,res){
+  res.sendFile(__dirname + '/main.html');
+});
 
-console.log("Server running on port 3000");
+web.post('/login', function (req,res){
+  if(req.body.user == DB.user && req.body.password == DB.password){
+    res.send("hello");
+  }else{
+    res.send("bye");
+  }
+});

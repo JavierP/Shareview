@@ -1,0 +1,18 @@
+* {
+    background-color:#ffffff;
+}
+
+.box {
+  border-radius: 5px;
+  border: 1px solid #dcdcdc;
+  background-color: #f5f5f5 ;
+  height: 10em;
+  width: 30em;
+  margin: auto;
+  text-align: center;
+}
+
+input:nth-child(2) {
+  margin:auto;
+  display:block;
+}
